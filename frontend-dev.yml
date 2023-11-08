@@ -19,14 +19,16 @@ tasks:
    ansible.builtin.file:
    path: /usr/share/nginx/html
    state: directory
+
   - name: download and extract frontend
     ansible.builtin.unarchive:
     src: https://expense-artifacts.s3.amazonaws.com/frontend.zip
     dest: /usr/share/nginx/html
     remote_src: yes
-- name:start nginx service
-ansible.builtin.systemd:
-name: nginx
-state: restart
-enable: yes
+
+    - name: start nginx service
+      ansible.builtin.systemd:
+      name: nginx
+      state: restart
+      enable: yes
 
