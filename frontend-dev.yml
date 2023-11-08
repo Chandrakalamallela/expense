@@ -1,13 +1,13 @@
 - name: Expense frontend setup
 hosts: all
 tasks:
- -name: Install nginx
- ansible.builtin.dnf:
+ - name: Install nginx
+   ansible.builtin.dnf:
  name: nginx 
  state: present
 
  - name: copy expense config file
- ansible.builtin.copy:
+   ansible.builtin.copy:
  src: expense.conf
  dest: /etc/nginx/default.d/expense.conf
 
@@ -15,7 +15,8 @@ tasks:
    ansible.builtin.file:
    path: /usr/share/nginx/html
    state: absent
-   - name: crete nginx dir
+
+  - name: crete nginx dir
    ansible.builtin.file:
    path: /usr/share/nginx/html
    state: directory
